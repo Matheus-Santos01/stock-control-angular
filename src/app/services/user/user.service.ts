@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SignupUserRequest } from 'src/app/models/interfaces/user/SignupUserRequest';
 import { SignupUserResponse } from 'src/app/models/interfaces/user/SignupUserResponse';
+import { AuthRequest } from 'src/app/models/interfaces/user/auth/AuthRequest';
+import { AuthResponse } from './../../models/interfaces/user/auth/AuthResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,13 @@ export class UserService {
   signupUser(requestDatas: SignupUserRequest): Observable<SignupUserResponse>{
     return this.http.post<SignupUserResponse>(
       `${this.API_URL}/user`,
+      requestDatas
+    )
+  }
+
+  authUser(requestDatas: AuthRequest): Observable<AuthResponse>{
+    return this.http.post<AuthResponse>(
+      `${this.API_URL}/auth`,
       requestDatas
     )
   }
